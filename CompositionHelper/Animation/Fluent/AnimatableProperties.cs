@@ -6,6 +6,7 @@
     public static class AnimatableProperties
     {
         public static Vector3BaseAnimatableProperty Offset => new Vector3BaseAnimatableProperty();
+        public static Vector3BaseAnimatableProperty Translation => new Vector3BaseAnimatableProperty();
         public static Vector2BaseAnimatableProperty AnchorPoint => new Vector2BaseAnimatableProperty();
         public static Vector3BaseAnimatableProperty CenterPoint => new Vector3BaseAnimatableProperty();
         public static Vector3BaseAnimatableProperty Scale => new Vector3BaseAnimatableProperty();

@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using CompositionHelper.Util;
+using System.Numerics;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
@@ -9,12 +10,24 @@ namespace CompositionHelper
     {
         public static Visual GetVisual(this UIElement element)
         {
-            return ElementCompositionPreview.GetElementVisual(element);
+            var visual = ElementCompositionPreview.GetElementVisual(element);
+            if (DeviceUtil.IsRs2OS)
+            {
+                ElementCompositionPreview.SetIsTranslationEnabled(element, true);
+                visual.Properties.InsertVector3("Translation", Vector3.Zero);
+            }
+            return visual;
         }
 
         public static Visual GetChildVisual(this UIElement element)
         {
-            return ElementCompositionPreview.GetElementChildVisual(element);
+            var visual = ElementCompositionPreview.GetElementChildVisual(element);
+            if (DeviceUtil.IsRs2OS)
+            {
+                ElementCompositionPreview.SetIsTranslationEnabled(element, true);
+                visual.Properties.InsertVector3("Translation", Vector3.Zero);
+            }
+            return visual;
         }
 
         public static void SetChildVisual(this UIElement element, Visual visual)
@@ -100,6 +113,31 @@ namespace CompositionHelper
         public static Vector3 GetOffset(this UIElement element)
         {
             return element.GetVisual().Offset;
+        }
+
+        public static void SetTranslation(this UIElement element, Vector3 value)
+        {
+            if (DeviceUtil.IsRs2OS)
+            {
+                element.GetVisual().Properties.InsertVector3("Translation", value);
+            }
+            else
+            {
+                SetOffset(element, value);
+            }
+        }
+
+        public static Vector3 GetTranslation(this UIElement element)
+        {
+            if (DeviceUtil.IsRs2OS)
+            {
+                element.GetVisual().Properties.TryGetVector3("Translation", out Vector3 value);
+                return value;
+            }
+            else
+            {
+                return GetOffset(element);
+            }
         }
 
         public static void SetOpacity(this UIElement element, float value)

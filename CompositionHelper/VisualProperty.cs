@@ -19,6 +19,7 @@
         RotationAxis,
         Scale,
         Size,
-        TransformMatrix
+        TransformMatrix,
+        Translation
     }
 }
