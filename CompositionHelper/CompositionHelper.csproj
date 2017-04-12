@@ -11,7 +11,7 @@
     <AssemblyName>CompositionHelper</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -228,6 +228,7 @@
     <Compile Include="QuaternionParameter.cs" />
     <Compile Include="ReferenceParameterCreateMode.cs" />
     <Compile Include="ScalarParameter.cs" />
+    <Compile Include="Util\DeviceUtil.cs" />
     <Compile Include="Vector2Parameter.cs" />
     <Compile Include="Vector3Parameter.cs" />
     <Compile Include="Vector4Parameter.cs" />
